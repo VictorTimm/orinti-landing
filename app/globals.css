@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafafa;
+  --foreground: #111111;
+  --surface: #ffffff;
+  --dark: #0b0c10;
+  --orange: #ff6a00;
+  --orange-hover: #e55f00;
+  --title: rgba(17, 17, 17, 0.87);
+  --copy: rgba(17, 17, 17, 0.75);
+  --title-on-dark: rgba(255, 255, 255, 0.87);
+  --copy-on-dark: rgba(255, 255, 255, 0.75);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-dark: var(--dark);
+  --color-orange: var(--orange);
+  --color-orange-hover: var(--orange-hover);
+  --color-title: var(--title);
+  --color-copy: var(--copy);
+  --color-title-on-dark: var(--title-on-dark);
+  --color-copy-on-dark: var(--copy-on-dark);
+  --font-hero: var(--font-press);
+  --font-display: var(--font-oswald);
+  --font-sans: var(--font-roboto);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--copy);
+  font-family: var(--font-roboto), ui-monospace, monospace;
+  font-size: 16px;
+  line-height: 1.75;
+  overflow-x: clip;
+}
+
+.font-hero {
+  font-family: var(--font-press), ui-monospace, monospace;
+}
+
+.font-display {
+  font-family: var(--font-oswald), ui-sans-serif, sans-serif;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-marquee-track {
+  animation: logo-marquee 32s linear infinite;
+}
+
+.logo-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.type-cursor {
+  display: inline-block;
+  width: 0.68em;
+  height: 0.92em;
+  margin-left: 0.12em;
+  vertical-align: -0.06em;
+  background: currentColor;
+  animation: cursor-blink 1.05s steps(1) infinite;
+}
+
+.type-cursor-done {
+  animation-iteration-count: 4;
+  animation-fill-mode: forwards;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.nav-shell {
+  animation: nav-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-copy {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-copy-in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes faq-answer {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+details[open] .faq-answer {
+  animation: faq-answer 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-overlay {
+  opacity: 1;
+}
+
+@media (hover: hover) and (min-width: 768px) {
+  .project-overlay {
+    opacity: 0;
+  }
+
+  .group:hover .project-overlay,
+  .group:focus-visible .project-overlay {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track {
+    animation: none;
+  }
+
+  .type-cursor,
+  .nav-shell,
+  details[open] .faq-answer {
+    animation: none;
+  }
+
+  .reveal,
+  .hero-copy {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
