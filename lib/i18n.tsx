@@ -47,8 +47,8 @@ const dictionaries = {
     },
     about: {
       label: "About",
-      title: "I am Victor. I design and build websites.",
-      p1: "Orinti Webdevelopment is a one-person studio for individuals and local businesses. If your current site is outdated, or you do not have one yet, I take care of structure, design, and copy so the site actually represents where the company is now.",
+      title: "I am Victor, a web developer and entrepreneur based in Europe, working worldwide.",
+      p1: "Orinti Webdevelopment is a one-person studio for individuals and businesses. If your current site is outdated, or you do not have one yet, I take care of structure, design, and copy so the site actually represents where the company is now.",
       p2: "You stay focused on the job. I handle the website, from first conversation to launch.",
       photoAlt: "Victor, founder of Orinti Webdevelopment",
     },
@@ -75,6 +75,16 @@ const dictionaries = {
           question: "How does pricing work?",
           answer:
             "You get a clear price after a short call, based on the size of the site. No packages on this page on purpose: the quote matches what you actually need.",
+        },
+        {
+          question: "Why work with a European developer?",
+          answer:
+            "You get direct communication, custom development and a lean process without the overhead of a large agency. We work remotely and keep projects simple, transparent and fast.",
+        },
+        {
+          question: "How do payments work?",
+          answer:
+            "Projects are quoted in USD and split into two payments: 50% upfront to start, and 50% before launch. As a European-based business, Orinti handles its own taxes, and applicable VAT is generally not charged to qualifying US business clients.",
         },
       ],
     },
@@ -128,8 +138,8 @@ const dictionaries = {
     },
     about: {
       label: "Over mij",
-      title: "Ik ben Victor. Ik ontwerp en bouw websites.",
-      p1: "Orinti Webdevelopment, dat ben ik. Ik werk voor particulieren en lokale ondernemers. Is je huidige site verouderd, of heb je er nog geen? Dan regel ik de structuur, het ontwerp en de teksten, zodat de site laat zien waar het bedrijf nu staat.",
+      title: "Ik ben Victor, webdeveloper en ondernemer, gevestigd in Europa en werkzaam wereldwijd.",
+      p1: "Orinti Webdevelopment, dat ben ik. Ik werk voor particulieren en bedrijven. Is je huidige site verouderd, of heb je er nog geen? Dan regel ik de structuur, het ontwerp en de teksten, zodat de site laat zien waar het bedrijf nu staat.",
       p2: "Jij blijft bij je werk. Ik regel de website, van het eerste gesprek tot live.",
       photoAlt: "Victor, oprichter van Orinti Webdevelopment",
     },
@@ -156,6 +166,16 @@ const dictionaries = {
           question: "Hoe werkt de prijs?",
           answer:
             "Na een kort gesprek krijg je een duidelijke prijs, afhankelijk van hoe groot de site wordt. Ik zet expres geen pakketten op deze pagina. De offerte sluit aan op wat jij nodig hebt.",
+        },
+        {
+          question: "Waarom werken met een Europese developer?",
+          answer:
+            "Je krijgt directe communicatie, maatwerk en een strak proces zonder de overhead van een groot bureau. We werken op afstand en houden projecten eenvoudig, transparant en snel.",
+        },
+        {
+          question: "Hoe werken betalingen?",
+          answer:
+            "Projecten worden in USD geoffreerd en in twee termijnen betaald: 50% vooraf om te starten, en 50% voor livegang. Als Europees bedrijf regelt Orinti de eigen belastingen. Voor kwalificerende Amerikaanse zakelijke klanten wordt btw in de regel niet in rekening gebracht.",
         },
       ],
     },
