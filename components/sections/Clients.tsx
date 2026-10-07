@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useLayoutEffect, useRef, useState, type Ref } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { useI18n } from "@/lib/i18n";
 
@@ -13,10 +14,11 @@ const logos = [
   { src: "/clients/circles.png", alt: "", className: "h-8 w-auto md:h-12" },
 ];
 
-function LogoSet({ hidden }: { hidden?: boolean }) {
+function LogoSet({ hidden, setRef }: { hidden?: boolean; setRef?: Ref<HTMLDivElement> }) {
   return (
     <div
-      className="flex shrink-0 items-center gap-10 px-5 md:gap-20 md:px-10"
+      ref={setRef}
+      className="flex shrink-0 items-center gap-10 pr-10 md:gap-20 md:pr-20"
       aria-hidden={hidden || undefined}
     >
       {logos.map((logo) => (
@@ -38,6 +40,36 @@ function LogoSet({ hidden }: { hidden?: boolean }) {
 
 export function Clients() {
   const { t } = useI18n();
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const unitRef = useRef<HTMLDivElement>(null);
+  const [copies, setCopies] = useState(4);
+
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    const unit = unitRef.current;
+    if (!viewport || !unit) return;
+
+    const sync = () => {
+      const unitWidth = unit.offsetWidth;
+      const viewWidth = viewport.clientWidth;
+      if (unitWidth < 1) return;
+
+      viewport.style.setProperty("--logo-marquee-shift", `${unitWidth}px`);
+      const needed = Math.max(3, Math.ceil((viewWidth * 2) / unitWidth) + 1);
+      setCopies((current) => (current === needed ? current : needed));
+    };
+
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(viewport);
+    ro.observe(unit);
+    const images = [...unit.querySelectorAll("img")];
+    images.forEach((image) => image.addEventListener("load", sync));
+    return () => {
+      ro.disconnect();
+      images.forEach((image) => image.removeEventListener("load", sync));
+    };
+  }, [copies]);
 
   return (
     <section id="clients" className="scroll-mt-24 overflow-hidden bg-white py-16 md:py-24">
@@ -48,10 +80,18 @@ export function Clients() {
           </h2>
         </Reveal>
       </div>
-      <div className="relative mt-10 mask-[linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] md:mt-12">
-        <div className="logo-marquee-track flex w-max">
-          <LogoSet />
-          <LogoSet hidden />
+      <div
+        ref={viewportRef}
+        className="relative mt-10 mask-[linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] md:mt-12"
+      >
+        <div className="logo-marquee-track flex w-max will-change-transform">
+          {Array.from({ length: copies }, (_, index) => (
+            <LogoSet
+              key={index}
+              setRef={index === 0 ? unitRef : undefined}
+              hidden={index > 0}
+            />
+          ))}
         </div>
       </div>
     </section>
